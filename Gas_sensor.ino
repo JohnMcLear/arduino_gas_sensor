@@ -26,7 +26,7 @@ int noteDurations[] = {
 // the following variables are long's because the time, measured in miliseconds,
 // will quickly become a bigger number than can be stored in an int.
 long lastDebounceTime = 0;  // the last time the output pin was toggled
-long debounceDelay = 10000;    // the debounce time; increase if the output flickers
+long debounceDelay = 500;    // the debounce time; increase if the output flickers
 
 void setup() {
   Serial.begin(9600);
@@ -35,7 +35,7 @@ void setup() {
 void loop() {
   int val = analogRead(gasSensor); // read the value from the pot
   Serial.println( val );
-  delay(100);
+  delay(500);
 
   if (val != lastButtonState) {
     // reset the debouncing timer
@@ -58,7 +58,7 @@ void loop() {
       digitalWrite(warningLed, HIGH);
       digitalWrite(extractorFan, HIGH); // Turn on the extractor fan
 
-      if(playTone === true){  // If the playTone Setting is set)
+      if(playTone == true){  // If the playTone Setting is set)
         // iterate over the notes of the melody:
         for (int thisNote = 0; thisNote < 8; thisNote++) {
   
@@ -84,6 +84,8 @@ void loop() {
       digitalWrite(extractorFan, LOW); // Turn off the extractor fan
     }
     buttonState = val;
+  }else{
+     Serial.println("Not changing due to debounce");
   }
   lastButtonState = val;
 }
