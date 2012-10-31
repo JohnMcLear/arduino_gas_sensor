@@ -7,7 +7,7 @@ int greenLed = 3; // teh LED port
 int warningLed = 7; // the LED port
 int redLed = 4; // teh LED port
 int speaker = 8; // Speaker
-int extractorFan = 13; // Extractor fan Solid State port - Used for switching on/off an extractor fan
+int extractorFan = 12; // Extractor fan Solid State port - Used for switching on/off an extractor fan
 int lastButtonState = LOW;   // the previous reading from the input pin
 int buttonState;             // the current reading from the input pin
 int playTone = false; // Set to true to play a tone
@@ -50,13 +50,13 @@ void loop() {
       digitalWrite(greenLed, HIGH);    // turn the LED off by making the voltage LOW
       digitalWrite(redLed, LOW);
       digitalWrite(warningLed, HIGH);
-      digitalWrite(extractorFan, HIGH); // Turn on the extractor fan
+      digitalWrite(extractorFan, LOW); // Turn on the extractor fan
     }
     else if(val > 100){
       digitalWrite(greenLed, LOW);    // turn the LED off by making the voltage LOW
       digitalWrite(redLed, HIGH);
       digitalWrite(warningLed, HIGH);
-      digitalWrite(extractorFan, HIGH); // Turn on the extractor fan
+      digitalWrite(extractorFan, LOW); // Turn on the extractor fan
 
       if(playTone == true){  // If the playTone Setting is set)
         // iterate over the notes of the melody:
@@ -81,7 +81,7 @@ void loop() {
       digitalWrite(greenLed, HIGH); 
       digitalWrite(redLed, LOW); 
       digitalWrite(warningLed, LOW);
-      digitalWrite(extractorFan, LOW); // Turn off the extractor fan
+      digitalWrite(extractorFan, HIGH); // Turn off the extractor fan
     }
     buttonState = val;
   }else{
